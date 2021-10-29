@@ -28,6 +28,10 @@ k = math.floor(percentage * kmax)
 if (k == 0):
     k = 1
 
+#sementara aku paksa dulu k menjadi 50, soalnya cara ngitung k pake persentase itu gk tepat.
+# bkn berarti persentase 10 mb trus persentase 0.1, jadi 1 mb
+k = 50
+
 #potong U
 print("POTONG U")
 u = u.T[0:k].T
