@@ -10,43 +10,52 @@ grayImage = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 # cv abai in metadata. img langsung jadi array numpy. man easier jdie.
 # save image
 print("image berhasil di read, calculating svd...")
-u, s, vh = np.linalg.svd(grayImage, full_matrices=False) # sementara full matrix = false. ini ngaruh ke ukuran dari matriks u sama vh. 
-# akibatnya matriksnya gk 'full' sesuai svd, tapi false dulu soalnya toh bagian matriks yang 'dipotong' gabakal diakses juga
-# kalo mau dibikin true, kita jadi perlu nge modif matriks S lebih jauh. nge debugnya dengan matriks.shape,
-# gagal kalo gk sesuai ketentuan perkalian matriks. 
 
-status = cv.imwrite('uncompressed.jpg',grayImage)
-
-# PROSES COMPRESSING SVD
-print("PROSES COMPRES")
-kmax = s.shape[0]
-
-percentage = 0.1
-# percentage = 1 artinya k = kmax. 
-
-k = math.floor(percentage * kmax)
+# MENENTUKKAN K
+compressRatio = 0.1
+m = img.shape[0]
+n = img.shape[1]
+k = compressRatio*(m*n)/(1 + m + n)
+k = math.floor(k)
+kmax = min(m,n)
 if (k == 0):
     k = 1
+print("compressRatio = ", compressRatio)
+print("kmax = ", kmax)
+print("k = ", k)
+print("ukuran asli = ", m*n)
+print("ukuran compressed = ", k*(1+m+n))
 
-#sementara aku paksa dulu k menjadi 50, soalnya cara ngitung k pake persentase itu gk tepat.
-# bkn berarti persentase 10 mb trus persentase 0.1, jadi 1 mb
-k = 50
+output = np.zeros((3, m, n))
+print(output[1].shape)
+print("PROSES COMPRES")
+for i in range (3):
+    colorChannel = img[:,:,i]
+    # PROSES COMPRESSING SVD
+    print("proccessing channel ",i)
+    u, s, vh = np.linalg.svd(colorChannel, full_matrices=False) 
+    # sementara full matrix = false. ini ngaruh ke ukuran dari matriks u sama vh. 
+    # akibatnya matriksnya gk 'full' sesuai svd, tapi false dulu soalnya toh bagian matriks yang 'dipotong' gabakal diakses juga
+    # kalo mau dibikin true, kita jadi perlu nge modif matriks S lebih jauh. nge debugnya dengan matriks.shape,
+    # gagal kalo gk sesuai ketentuan perkalian matriks. 
 
-#potong U
-print("POTONG U")
-u = u.T[0:k].T
+    #potong U
+    u = u.T[0:k].T
 
-# potong s
-print("POTONG S")
-s = s[0:k]
+    # potong s
+    s = s[0:k]
 
-# potong vh
-print("POTONG VH")
-vh = vh[0:k]
+    # potong vh
+    vh = vh[0:k]
 
-# PROSES GABUNGIN LAGI MENJADI SATU MATRIKS
-b = u @ np.diag(s) @ vh
+    # PROSES GABUNGIN LAGI MENJADI SATU MATRIKS
+    output[i] = u @ np.diag(s) @ vh
 
+#combining
+b = output[0]
+g = output[1]
+r = output[2]
+imgOut = cv.merge((b,g,r))
 # PRINT KE FILE
-status = cv.imwrite('compressed.jpg',b)
+status = cv.imwrite('compressed.jpg',imgOut)
 print("status : ", status)
