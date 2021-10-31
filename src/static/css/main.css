@@ -1,15 +1,16 @@
-body, html {
+ body, html {
     margin: 0;
     font-family: sans-serif;
-    background-color: gray;
-
+    background-color: #2C2F33;
+    color: white;
 }
+
 
 .content {
     margin: 0 auto;
-    width: 400px;
+    width: 1000px;
 }
-
+/*
 table, td, th {
     border: 1px solid #aaa;
 }
@@ -35,7 +36,13 @@ td {
 #content {
     width: 70%;
 }
-
-h1,h4{
+*/
+h1{
     text-align: center;
-}
+    
+} 
+
+img {
+    width: 500px;
+    float: left;
+  }
