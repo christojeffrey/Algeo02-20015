@@ -1,52 +1,48 @@
-{% extends 'base.html' %}
-
-{% block head %}
+{% extends 'base.html' %} {% block head %}
 <title>ImageCompressorInator3000</title>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="content">
-    <h1>ImageCompressorInator3000</h1>
-    <h2>Upload Your Image</h2>
+  <h1>ImageCompressorInator3000</h1>
+  <h2>Upload Your Image</h2>
 
+  <form method="post" action="/" enctype="multipart/form-data">
+    <dl>
+      <p>
+        <input type="file" name="image" class="form-control" autocomplete="off" required />
+      </p>
+    </dl>
+    <p>
+      <input type="submit" value="Upload" class="btn btn-info" />
+    </p>
+  </form>
 
-    <form method="post" action="/" enctype="multipart/form-data">
-        <dl>
-            <p>
-                <input type="file" name="image" class="form-control"
-                    autocomplete="off" required>
-            </p>
-        </dl>
-        <p>
-            <input type="submit" value="Upload" class="btn
-                btn-info">
-        </p>
-    </form>
+  <p>Image Compression Rate:</p>
 
-    <p>Image Compression Rate: </p>
+  {% if filename %}
+  <form method="post" action="/">
+    <button type="submit" name="compress_button" value="compress_button">compress!</button>
+  </form>
+  {% endif %}
 
-    
+  <table>
+    <tr>
+      <th>Before</th>
+      <th>After</th>
+    </tr>
+    <tr>
+      {% if filename %}
+      <td><img src="{{url_for('static',filename='img/base/'+ filename)}}" /></td>
+      {% else %}
+      <td><img src="{{url_for('static',filename='img/base/Untitled.png')}}" /></td>
+      {% endif %} {% if compress %}
+      <td>compress = true<img src="{{url_for('static',filename='img/compressed.jpg')}}" /></td>
+      {% else %}
+      <td>compress = false<img src="{{url_for('static',filename='img/noimage.png')}}" /></td>
+      {% endif %}
+    </tr>
+  </table>
 
-
-    <table>
-        <tr>
-            <th>Before</Th> 
-            <th>After</th>
-        </tr>
-        <tr>
-            {% if filename %} 
-            <td><img src = "{{url_for('static',filename='img/base/'+ filename)}}"></td>
-            <td><img src = "{{url_for('static',filename='img/noimage.png')}}"></td>
-
-            {% else %}
-            <td><img src = "{{url_for('static',filename='img/base/Untitled.png')}}"></td>
-            <td><img src = "{{url_for('static',filename='img/noimage.png')}}"></td>
-            {% endif %}
-        </tr>
-    </table>
-       
-    <h4>Image pixel difference percentage: 50% </h4>
-    <h4>Image compression time: 0.5 seconds </h4>
-
+  <h4>Image pixel difference percentage: 50%</h4>
+  <h4>Image compression time: 0.5 seconds</h4>
 </div>
 {% endblock %}

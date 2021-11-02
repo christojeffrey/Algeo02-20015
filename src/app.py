@@ -1,7 +1,7 @@
 from flask import Flask,render_template, request,flash,redirect
 import os
 from werkzeug.utils import secure_filename
-
+import compressAlgo
 
 app = Flask(__name__)
 
@@ -10,6 +10,7 @@ app.config["Image_upload"] = os.getcwd() + "\\static\\img\\base\\"
 app.config["Image_compressed"] = os.getcwd() + "\\static\\img\\compressed\\"
 app.config["ALLOWED_EXTENSIONS"] = ['png', 'jpg', 'jpeg', 'gif']
 
+filename = ""
 def isallowed(filename):
     if not "." in filename:
         return False    
@@ -22,10 +23,11 @@ def isallowed(filename):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html',filename = filename, compress = False)
 
 @app.route('/', methods=['GET','POST'])
 def upload_image():
+    global filename
     if request.method == 'POST':
         if request.files:
             image = request.files["image"]
@@ -38,9 +40,13 @@ def upload_image():
             filename = secure_filename(image.filename)
             image.save(os.path.join(app.config["Image_upload"],filename))
 
-            return render_template('index.html',filename=filename)
-    
-    return render_template('index.html')
-            
+            return render_template('index.html',filename=filename,compress = False)
+        elif request.form.get("compress_button"):
+            compressAlgo.algo(filename)
+            return render_template('index.html', filename = filename, compress = True)
+    return render_template('index.html',filename = filename, compress = False)
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
