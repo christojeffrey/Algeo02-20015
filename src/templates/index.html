@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block head %}
 <title>ImageCompressorInator3000</title>
 {% endblock head%} {% block body %}
-<div class="w-75">
+<div class="w-50">
   <div class="text-center">
     <h1>ImageCompressorInator3000</h1>
   </div>
@@ -14,26 +14,46 @@
       <input type="range" class="form-range" name="compressPercentage" min="1" max="100" value="50" class="slider" id="myRange" />
     </div>
     <div id="compressPercentage">50</div>
-    <input type="submit" value="Compress!" class="btn btn-info" />
+    <div class="d-flex justify-content-center">
+      <input type="submit" value="Compress!" class="btn btn-info" />
+    </div>
   </form>
-
-  <!-- image preview -->
-  <div class="d-flex border-dark">
+  <div class="d-flex justify-content-center">
     {% if compress %}
-    <div class="mw-50 align-items-center">
-      <img class="img-fluid" src="{{url_for('static',filename='img/base/'+ filename)}}" />
+    <a href="{{url_for('static',filename='img/compressed.jpg')}}" download>
+      <button class=" btn btn-danger">Download!</button>
+    </a>
+      {% else %}
+      <button class=" btn btn-danger disabled">Download!</button>
+      {% endif %}
+  </div>
+  
+  <!-- image preview -->
+  <div class="d-flex">
+    {% if compress %}
+    <div class="mw-50 m-1">
+      <img class="img-fluid rounded" src="{{url_for('static',filename='img/'+ filename)}}" />
     </div>
-    <div class="mw-50">
-      <img class="img-fluid" src="{{url_for('static',filename='img/compressed.jpg')}}" />
+    <div class="mw-50 m-1">
+      <img class="img-fluid rounded" src="{{url_for('static',filename='img/compressed.jpg')}}" />
     </div>
+   
     {% else %}
-    <div class="w-50" >
-      <img class="img-fluid" src="{{url_for('static',filename='img/base/Untitled.png')}}" />
+    <div class="w-50 m-1" >
+      <img class="img-fluid rounded" src="{{url_for('static',filename='img/base/perry.png')}}" />
     </div>
-    <div class="w-50">
-      <img class="img-fluid" src="{{url_for('static',filename='img/noimage.png')}}" />
+    <div class="w-50 m-1">
+      <img class="img-fluid rounded" src="{{url_for('static',filename='img/base/noimage.png')}}" />
     </div>
     {% endif %}
   </div>
+  {% if compress %}
+  <h4>
+    Compress Log
+  </h4>
+  <div>
+    {{compressLog}}
+  </div>
+  {% endif %}
 </div>
 {% endblock body%}
