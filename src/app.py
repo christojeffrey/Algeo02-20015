@@ -21,28 +21,27 @@ def isallowed(filename):
     else:
         return False
 
-@app.route('/')
-def index():
-    return render_template('index.html',filename = filename, compress = False)
+# @app.route('/')
+# def index():
+#     return render_template('index.html',filename = filename, compress = False)
 
 @app.route('/', methods=['GET','POST'])
 def upload_image():
     global filename
-    if request.method == 'POST':
-        if request.files:
+    if request.method == 'POST' and 'image' in request.files:
+            percentage = request.form.get("compressPercentage") # percentage as string
+            percentage = int(percentage)
+            # print(percentage)
+            # print(type(percentage))
             image = request.files["image"]
-
             if image.filename == "":
                 return redirect(request.url)
             if not isallowed(image.filename):
                 return redirect(request.url)
-            
             filename = secure_filename(image.filename)
             image.save(os.path.join(app.config["Image_upload"],filename))
 
-            return render_template('index.html',filename=filename,compress = False)
-        elif request.form.get("compress_button"):
-            compressAlgo.algo(filename)
+            compressAlgo.algo(filename, percentage)
             return render_template('index.html', filename = filename, compress = True)
     return render_template('index.html',filename = filename, compress = False)
 

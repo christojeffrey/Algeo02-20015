@@ -4,17 +4,17 @@ import numpy as np
 import math
 
 
-def algo(filename):
+def algo(filename, percentage):
     filename='static/img/base/'+ filename
     img = cv.imread(filename)
 
-    grayImage = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+    # grayImage = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
     # cv abai in metadata. img langsung jadi array numpy. man easier jdie.
     # save image
     print("image berhasil di read, calculating svd...")
 
     # MENENTUKKAN K
-    compressRatio = 0.1
+    compressRatio = percentage/100
     m = img.shape[0]
     n = img.shape[1]
     k = compressRatio*(m*n)/(1 + m + n)
