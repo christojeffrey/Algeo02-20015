@@ -42,7 +42,11 @@ def upload_image():
             image.save(os.path.join(app.config["Image_upload"],filename))
 
             compressAlgo.algo(filename, percentage)
-            compressLog = "testing satu dua tiga"
+            compressLog = """
+            testing </br>
+            mutli </br>
+            line
+            """
             return render_template('index.html', filename = filename, compress = True, compressLog = compressLog)
     return render_template('index.html',filename = filename, compress = False)
 
