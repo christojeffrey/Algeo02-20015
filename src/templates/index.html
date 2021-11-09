@@ -2,7 +2,7 @@
 <title>ImageCompressorInator3000</title>
 {% endblock head%} {% block body %}
 <div class="w-50">
-  <div class="text-center">
+  <div class="text-center" style="border-style: solid;border-color: black;border-radius: 1rem;background-color: rgb(64, 199, 64);color: rgb(151, 56, 151);">
     <h1>ImageCompressorInator3000</h1>
   </div>
   <!-- file, compress setting, and compress button -->
@@ -39,11 +39,14 @@
     </div>
    
     {% else %}
-    <div class="w-50 m-1" >
-      <img class="img-fluid rounded" src="{{url_for('static',filename='img/base/perry.png')}}" />
+    <div class="w-50 m-1" style="height: 100%;">
+      <img class="img-fluid rounded" src="{{url_for('static',filename='img/base/perry.png')}}" style="border-style: solid;border-color: black;padding: 10px;border-radius: 3px;"/>
     </div>
     <div class="w-50 m-1">
-      <img class="img-fluid rounded" src="{{url_for('static',filename='img/base/noimage.png')}}" />
+      <img class="img-fluid" src="{{url_for('static',filename='img/base/Arrow.png')}}" style="margin-top: 70px;padding: 2rem;"/>
+    </div>
+    <div class="w-50 m-1">
+      <img class="img-fluid rounded" src="{{url_for('static',filename='img/base/noimage.png')}}" style="border-style: solid;border-color: black;padding: 10px;border-radius: 3px;"/>
     </div>
     {% endif %}
   </div>
