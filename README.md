@@ -9,7 +9,7 @@ Tugas Besar 2 mata kuliah aljabar linear dan geometri
 
 ## Struktur Projek 
 * **_doc_**  berisi laporan
-* **_src_**  berisi file "*.java" 
+* **_src_**  berisi file "source file" 
 
 [link spec](https://docs.google.com/document/d/1wXEgLpmd67_ACy9lpMzE8IBJ5L3XB73EzVbzfl9h-gU/edit)
 
