@@ -1,10 +1,6 @@
-{% extends 'base.html' %} 
-
-{% block head %}
+{% extends 'base.html' %} {% block head %}
 <title>ImageCompressorInator3000</title>
-{% endblock head%} 
-
-{% block body %}
+{% endblock head%} {% block body %}
 <div class="w-50">
   <div class="text-center" style="border-style: solid;border-color: black;border-radius: 1rem;background-color: rgb(64, 199, 64);color: rgb(151, 56, 151);">
     <h1>ImageCompressorInator3000</h1>
@@ -13,31 +9,15 @@
   <form method="post" action="/" enctype="multipart/form-data">
       <h5>Upload Image</h3>
       <input type="file" name="image" class="form-control-lg" autocomplete="off" required />
-      <p>
-        <input type="submit" value="Submit" class="btn
-            btn-info">
-    </p>
-
-  </form>
-
-  <form>
       <h5>Compress Percentage</h3>
     <div class="slidecontainer">
       <input type="range" class="form-range" name="compressPercentage" min="1" max="100" value="50" class="slider" id="myRange" />
     </div>
     <div id="compressPercentage">50</div>
-    {% if filename %}
     <div class="d-flex justify-content-center">
       <input type="submit" value="Compress!" class="btn btn-info" />
     </div>
-    {% else %}
-    <div class="d-flex justify-content-center">
-      <input type="submit" value="Compress!" class="btn btn-info disabled" />
-    </div>
-    {% endif %}
   </form>
-
-  
   <div class="d-flex justify-content-center">
     {% if compress %}
     <a href="{{url_for('static',filename='img/compressed.jpg')}}" download>
@@ -50,23 +30,18 @@
   
   <!-- image preview -->
   <div class="d-flex">
-    {% if filename %}
+    {% if compress %}
     <div class="mw-50 m-1">
       <img class="img-fluid rounded" src="{{url_for('static',filename='img/'+ filename)}}" />
     </div>
-    {% else %}
-
-    <div class="w-50 m-1" style="height: 100%;">
-      <img class="img-fluid rounded" src="{{url_for('static',filename='img/base/noimage.png')}}" style="border-style: solid;border-color: black;padding: 10px;border-radius: 3px;"/>
-    </div>
-    {% endif %}
-
-    {% if compress %}
     <div class="mw-50 m-1">
       <img class="img-fluid rounded" src="{{url_for('static',filename='img/compressed.jpg')}}" />
     </div>
    
     {% else %}
+    <div class="w-50 m-1" style="height: 100%;">
+      <img class="img-fluid rounded" src="{{url_for('static',filename='img/base/noimage.png')}}" style="border-style: solid;border-color: black;padding: 10px;border-radius: 3px;"/>
+    </div>
     <div class="w-50 m-1">
       <img class="img-fluid" src="{{url_for('static',filename='img/base/Arrow.png')}}" style="margin-top: 70px;padding: 2rem;"/>
     </div>
@@ -75,8 +50,6 @@
     </div>
     {% endif %}
   </div>
-
-
   {% if compress %}
   <h4>
     Compress Log
