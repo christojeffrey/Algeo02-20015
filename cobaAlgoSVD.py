@@ -16,12 +16,15 @@ def ownSVD(img):
     a = img.T @ img
     kanan = np.zeros((a.shape[0], a.shape[0]), int)
     np.fill_diagonal(kanan, 1)
-    for i in range(0,100):
+    for i in range(0,10):
         q,r = np.linalg.qr(a)
         kanan = kanan @ q
         a = r @ q
     tengah = np.absolute(np.diag(a))
     tengah = np.sqrt(tengah)
+    for b in tengah:
+        if(b == 0):
+            print("ada yang nol, artinya perlu penanganan khusus. belom dibikin, soalnya dikira gada")
     kiri = img @ kanan / tengah
     return kiri.T[0:min].T,tengah[0:min], kanan.T[0:min]
 
@@ -50,15 +53,11 @@ def algo(filename, percentage):
     print(output[1].shape)
     print("PROSES COMPRES")
     for i in range (3):
-        colorChannel = img[:,:,i]
+        colorChannel = img[:,:,i].astype(float)
         # PROSES COMPRESSING SVD
         print("proccessing channel ",i+1)
         u, s, vh = ownSVD(colorChannel)
-        # sementara full matrix = false. ini ngaruh ke ukuran dari matriks u sama vh. 
-        # akibatnya matriksnya gk 'full' sesuai svd, tapi false dulu soalnya toh bagian matriks yang 'dipotong' gabakal diakses juga
-        # kalo mau dibikin true, kita jadi perlu nge modif matriks S lebih jauh. nge debugnya dengan matriks.shape,
-        # gagal kalo gk sesuai ketentuan perkalian matriks. 
-
+    
         #potong U
         u = u.T[0:k].T
 
@@ -69,10 +68,12 @@ def algo(filename, percentage):
         vh = vh[0:k]
 
         # PROSES GABUNGIN LAGI MENJADI SATU MATRIKS
-        output[i] = u @ np.diag(s) @ vh
+        output[i] = (u @ np.diag(s) @ vh)
+        output[i][output[i]>255] = 255
+        output[i][output[i]<0] = 0
 
     #combining
-    printf("combining...")
+    print("combining...")
     b = output[0]
     g = output[1]
     r = output[2]
@@ -80,9 +81,18 @@ def algo(filename, percentage):
     # PRINT KE FILE
     status = cv.imwrite('ALGOSENDIRICOMPRES.jpg',imgOut)
     print("status : ", status)
-
-
     
-# using function
+
+
+#testing svd untuk matriks
+x = np.random.randint(100, size=(10, 10))
+u, s, vh = ownSVD(x)
+x2 = u @ np.diag(s) @ vh
+print("matriks asli")
+print(np.round(x))
+print("matriks hasil svd, dikali lagi")
+print(np.round(x2))
+
+# using function on image
 filename='image.jpg'
-algo(filename, 100)
+algo(filename, 50)
