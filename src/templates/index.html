@@ -10,32 +10,41 @@
     <h1>ImageCompressorInator3000</h1>
   </div>
   <!-- file, compress setting, and compress button -->
+  {% if filename %}
   <form method="post" action="/" enctype="multipart/form-data">
+      <h5>Upload Image</h3>
+      <input type="file" name="image" class="form-control-lg" autocomplete="off"  />
+      <p>
+        <input type="submit" value="Submit" class="btn btn-info">
+    </p>
+  {% else %}
+    <form method="post" action="/" enctype="multipart/form-data">
       <h5>Upload Image</h3>
       <input type="file" name="image" class="form-control-lg" autocomplete="off" required />
       <p>
         <input type="submit" value="Submit" class="btn
             btn-info">
     </p>
+  {% endif %}
 
-  </form>
-
-  <form>
-      <h5>Compress Percentage</h3>
-    <div class="slidecontainer">
-      <input type="range" class="form-range" name="compressPercentage" min="1" max="100" value="50" class="slider" id="myRange" />
-    </div>
-    <div id="compressPercentage">50</div>
     {% if filename %}
-    <div class="d-flex justify-content-center">
-      <input type="submit" value="Compress!" class="btn btn-info" />
-    </div>
+    <form method="post" action="/" enctype="multipart/form-data">
+      <h5>Compress Percentage</h3>
+        <div class="slidecontainer">
+          <input type="range" class="form-range" name="compressPercentage" min="1" max="100" value="50" class="slider" id="myRange" />
+        </div>
+        <div id="compressPercentage">50</div>
+      <div class="d-flex justify-content-center">
+        <input type="submit" value="Compress!" class="btn btn-info " name = "Compress"/>
+      </div>
+    </form>
+    
     {% else %}
     <div class="d-flex justify-content-center">
       <input type="submit" value="Compress!" class="btn btn-info disabled" />
     </div>
     {% endif %}
-  </form>
+  
 
   
   <div class="d-flex justify-content-center">
@@ -52,12 +61,12 @@
   <div class="d-flex">
     {% if filename %}
     <div class="mw-50 m-1">
-      <img class="img-fluid rounded" src="{{url_for('static',filename='img/'+ filename)}}" />
+      <img class="img-fluid rounded" src="{{url_for('static',filename='img/base/'+ filename)}}" />
     </div>
     {% else %}
 
     <div class="w-50 m-1" style="height: 100%;">
-      <img class="img-fluid rounded" src="{{url_for('static',filename='img/base/noimage.png')}}" style="border-style: solid;border-color: black;padding: 10px;border-radius: 3px;"/>
+      <img class="img-fluid rounded" src="{{url_for('static',filename='img/objects/noimage.png')}}" style="border-style: solid;border-color: black;padding: 10px;border-radius: 3px;"/>
     </div>
     {% endif %}
 
@@ -68,10 +77,10 @@
    
     {% else %}
     <div class="w-50 m-1">
-      <img class="img-fluid" src="{{url_for('static',filename='img/base/Arrow.png')}}" style="margin-top: 70px;padding: 2rem;"/>
+      <img class="img-fluid" src="{{url_for('static',filename='img/objects/Arrow.png')}}" style="margin-top: 70px;padding: 2rem;"/>
     </div>
     <div class="w-50 m-1">
-      <img class="img-fluid rounded" src="{{url_for('static',filename='img/base/noimage.png')}}" style="border-style: solid;border-color: black;padding: 10px;border-radius: 3px;"/>
+      <img class="img-fluid rounded" src="{{url_for('static',filename='img/objects/noimage.png')}}" style="border-style: solid;border-color: black;padding: 10px;border-radius: 3px;"/>
     </div>
     {% endif %}
   </div>

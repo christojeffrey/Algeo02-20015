@@ -1,4 +1,4 @@
-from flask import Flask,render_template, request,flash,redirect,url_for
+from flask import Flask,render_template,request,flash,redirect,url_for
 import os
 from werkzeug.utils import secure_filename
 import compressAlgo
@@ -6,7 +6,7 @@ import compressAlgo
 app = Flask(__name__)
 
 app.secret_key = "himitsu desu"
-app.config["Image_upload"] = os.getcwd() + "\\static\\img\\"
+app.config["Image_upload"] = os.getcwd() + "\\static\\img\\base\\"
 app.config["Image_compressed"] = os.getcwd() + "\\static\\img\\compressed\\"
 app.config["ALLOWED_EXTENSIONS"] = ['png', 'jpg', 'jpeg', 'gif']
 
@@ -28,7 +28,21 @@ def index():
 @app.route('/', methods=['POST'])
 def upload_image():
     global filename
-    if 'image' in request.files:
+    if 'Compress' in request.form:
+        percentage = request.form.get("compressPercentage") # percentage as string
+        percentage = int(percentage)
+        print(filename)
+        print(percentage)
+
+        compressAlgo.algo(filename, percentage)
+        compressLog = """
+        testing </br>
+        mutli </br>
+        line
+        """
+        return render_template('index.html', filename = filename ,compress = True, compressLog = compressLog, code=301)
+    else:
+        if 'image' in request.files:
             image = request.files["image"]
             if image.filename == "":
                 return redirect(request.url)
@@ -46,7 +60,7 @@ def display_image(filename):
 
 @app.route('/compress/<filename>')
 def compress_image(filename):
-    return redirect(url_for('static', filename='uploads/img/base/' + filename),compress = True, compressLog = compressLog, code=301)
+    return redirect(url_for('static', filename='uploads/img/compressed/' + filename),compress = True, compressLog = compressLog, code=301)
 
 if __name__ == "__main__":
     app.run(debug=True)
