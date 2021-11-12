@@ -7,9 +7,9 @@
   </div>
   <!-- file, compress setting, and compress button -->
   <form method="post" action="/" enctype="multipart/form-data">
-      <h5>upload Image</h3>
+      <h5>Upload Image</h3>
       <input type="file" name="image" class="form-control-lg" autocomplete="off" required />
-      <h5>compress percentage</h3>
+      <h5>Compress Percentage</h3>
     <div class="slidecontainer">
       <input type="range" class="form-range" name="compressPercentage" min="1" max="100" value="50" class="slider" id="myRange" />
     </div>
@@ -40,7 +40,7 @@
    
     {% else %}
     <div class="w-50 m-1" style="height: 100%;">
-      <img class="img-fluid rounded" src="{{url_for('static',filename='img/base/perry.png')}}" style="border-style: solid;border-color: black;padding: 10px;border-radius: 3px;"/>
+      <img class="img-fluid rounded" src="{{url_for('static',filename='img/base/noimage.png')}}" style="border-style: solid;border-color: black;padding: 10px;border-radius: 3px;"/>
     </div>
     <div class="w-50 m-1">
       <img class="img-fluid" src="{{url_for('static',filename='img/base/Arrow.png')}}" style="margin-top: 70px;padding: 2rem;"/>
