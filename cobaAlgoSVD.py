@@ -2,7 +2,7 @@
 import cv2 as cv
 import numpy as np
 import math
-
+import time
 
 
 # function 
@@ -16,7 +16,10 @@ def ownSVD(img):
     a = img.T @ img
     kanan = np.zeros((a.shape[0], a.shape[0]), int)
     np.fill_diagonal(kanan, 1)
-    for i in range(0,10):
+    # iterasi bisa diatur mau berapa kali, semakin tinggi semakin akurat, 
+    # tapi (menurutku) gk noticable kalo tinggi2 banget. kalo 1x keliatan ada yg gk rapi, 5x udah relatif clean.
+    # jdi ya dibikin 5x iterasi aja
+    for i in range(0,5):
         q,r = np.linalg.qr(a)
         kanan = kanan @ q
         a = r @ q
@@ -94,5 +97,9 @@ print("matriks hasil svd, dikali lagi")
 print(np.round(x2))
 
 # using function on image
-filename='image.jpg'
+
+filename='perry.png'
+
+start_time = time.time()
 algo(filename, 50)
+print("--- %s seconds ---" % (time.time() - start_time))
