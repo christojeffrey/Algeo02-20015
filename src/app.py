@@ -34,12 +34,8 @@ def upload_image():
         print(filename)
         print(percentage)
 
-        compressAlgo.algoKompresi(filename,percentage)
-        compressLog = """
-        testing </br>
-        mutli </br>
-        line
-        """
+        compressLog = compressAlgo.algoKompresi(filename,percentage)
+        
         return render_template('index.html', filename = filename ,compress = True, compressLog = compressLog, code=301)
     else:
         if 'image' in request.files:

@@ -28,7 +28,8 @@ def ownSVD(img):
 
 def algoKompresi(filename, percentage):
     startTime = time.time()
-    img = cv.imread(filename)
+    print("//img//base//"+filename)
+    img = cv.imread("\\static\\img\\base\\"+filename)
     log = ""
     log += "image berhasil di read...<br>"
 
