@@ -21,3 +21,11 @@ img {
   border-radius: 3px;
   background-color: white;
 }
+
+#log-kompresi{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size:medium;
+  border-style: dashed;
+  border-color: black;
+  max-height: 50%;
+}
