@@ -1,7 +1,7 @@
 from flask import Flask,render_template,request,flash,redirect,url_for
 import os
 from werkzeug.utils import secure_filename
-import compressAlgo
+import compressAlgo 
 
 app = Flask(__name__)
 
