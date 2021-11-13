@@ -34,8 +34,10 @@ def ownSVD(img):
 
 
 def algo(filename, percentage):
+    startTime = time.time()
     img = cv.imread(filename)
-    print("image berhasil di read, calculating svd...")
+    log = ""
+    log += "image berhasil di read...<br>"
 
     # MENENTUKKAN K
     compressRatio = percentage/100
@@ -46,19 +48,18 @@ def algo(filename, percentage):
     kmax = min(m,n)
     if (k == 0):
         k = 1
-    print("compressRatio = ", compressRatio)
-    print("kmax = ", kmax)
-    print("k = ", k)
-    print("ukuran asli = ", m*n)
-    print("ukuran compressed = ", k*(1+m+n))
+    log += ("compressRatio = " + str(compressRatio) + "<br>")
+    log += ("kmax = "+ str(kmax) +  "<br>")
+    log += ("k = " + str(k) + "<br>")
+    log += ("ukuran asli = " + str(m*n) + "<br>")
+    log += ("ukuran compressed = " + str(k*(1+m+n)) + "<br>")
 
     output = np.zeros((3, m, n))
-    print(output[1].shape)
-    print("PROSES COMPRES")
+    log += ("spliting image and compressing...<br>")
     for i in range (3):
+        channelTime = time.time()
         colorChannel = img[:,:,i].astype(float)
         # PROSES COMPRESSING SVD
-        print("proccessing channel ",i+1)
         u, s, vh = ownSVD(colorChannel)
     
         #potong U
@@ -74,16 +75,26 @@ def algo(filename, percentage):
         output[i] = (u @ np.diag(s) @ vh)
         output[i][output[i]>255] = 255
         output[i][output[i]<0] = 0
+        log += ("proccessing channel " + str(i+1) + " membutuhkan " + str(time.time() - channelTime) + " detik<br>")
 
     #combining
-    print("combining...")
+    log += ("combining...")
     b = output[0]
     g = output[1]
     r = output[2]
     imgOut = cv.merge((b,g,r))
     # PRINT KE FILE
-    status = cv.imwrite('ALGOSENDIRICOMPRES.jpg',imgOut)
-    print("status : ", status)
+    outputFormat = filename[-4:]
+    outputFilename = filename[:-4] + "_compressed" + outputFormat
+    log += "hasil kompresi akan disimpan dengan nama " + (outputFilename) + "<br>"
+
+    status = cv.imwrite(outputFilename,imgOut)
+    if (status):
+        log += ("kompresi gambar berhasil<br>")
+    else:
+        log += ("komprei gagal<br>")
+    log += "total waktu yang dibutuhkan untuk melakukan kompresi adalah " + str(time.time() - startTime) + " detik<br>"
+    return log
     
 
 
@@ -100,6 +111,6 @@ print(np.round(x2))
 
 filename='perry.png'
 
-start_time = time.time()
-algo(filename, 50)
-print("--- %s seconds ---" % (time.time() - start_time))
+
+log = algo(filename, 50)
+print(log)

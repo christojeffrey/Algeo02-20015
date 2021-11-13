@@ -1,62 +1,55 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 {% block head %}
 <title>ImageCompressorInator3000</title>
-{% endblock head%} 
+{% endblock head%}
 
 {% block body %}
-<div class="w-50">
-  <div class="text-center" style="border-style: solid;border-color: black;border-radius: 1rem;background-color: rgb(64, 199, 64);color: rgb(151, 56, 151);">
+<div class="w-50" id="luaran">
+  <div class="text-center"
+    style="border-style: solid;border-color: black;border-radius: 1rem;background-color: rgb(64, 199, 64);color: rgb(151, 56, 151);">
     <h1>ImageCompressorInator3000</h1>
   </div>
   <!-- file, compress setting, and compress button -->
   {% if filename %}
   <form method="post" action="/" enctype="multipart/form-data">
-      <h5>Upload Image</h3>
-      <input type="file" name="image" class="form-control-lg" autocomplete="off"  />
-      <p>
-        <input type="submit" value="Submit" class="btn btn-info">
-    </p>
-  {% else %}
-    <form method="post" action="/" enctype="multipart/form-data">
-      <h5>Upload Image</h3>
+    <h5>Upload Image</h3>
       <input type="file" name="image" class="form-control-lg" autocomplete="off" required />
       <p>
-        <input type="submit" value="Submit" class="btn
-            btn-info">
-    </p>
-  {% endif %}
+        <input type="submit" value="Submit" class="btn btn-info">
+      </p>
 
-    {% if filename %}
-    <form method="post" action="/" enctype="multipart/form-data">
-      <h5>Compress Percentage</h3>
-        <div class="slidecontainer">
-          <input type="range" class="form-range" name="compressPercentage" min="1" max="100" value="50" class="slider" id="myRange" />
-        </div>
-        <div id="compressPercentage">50</div>
-      <div class="d-flex justify-content-center">
-        <input type="submit" value="Compress!" class="btn btn-info " name = "Compress"/>
+  </form>
+
+  <form>
+    <h5>Compress Percentage</h3>
+      <div class="slidecontainer">
+        <input type="range" class="form-range" name="compressPercentage" min="1" max="100" value="50" class="slider"
+          id="myRange" />
       </div>
-    </form>
-    
-    {% else %}
-    <div class="d-flex justify-content-center">
-      <input type="submit" value="Compress!" class="btn btn-info disabled" />
-    </div>
-    {% endif %}
-  
+      <div id="compressPercentage">50</div>
+      {% if filename %}
+      <div class="d-flex justify-content-center">
+        <input type="submit" value="Compress!" class="btn btn-info" />
+      </div>
+      {% else %}
+      <div class="d-flex justify-content-center">
+        <input type="submit" value="Compress!" class="btn btn-info disabled" />
+      </div>
+      {% endif %}
+  </form>
 
-  
+
   <div class="d-flex justify-content-center">
     {% if compress %}
     <a href="{{url_for('static',filename='img/compressed.jpg')}}" download>
       <button class=" btn btn-danger">Download!</button>
     </a>
-      {% else %}
-      <button class=" btn btn-danger disabled">Download!</button>
-      {% endif %}
+    {% else %}
+    <button class=" btn btn-danger disabled">Download!</button>
+    {% endif %}
   </div>
-  
+
   <!-- image preview -->
   <div class="d-flex">
     {% if filename %}
@@ -71,10 +64,15 @@
     {% endif %}
 
     {% if compress %}
-    <div class="mw-50 m-1">
-      <img class="img-fluid rounded" src="{{url_for('static',filename='img/compressed.jpg')}}" />
+    <div class="w-50 m-1">
+      <img class="img-fluid rounded mx-auto d-block" src="{{url_for('static',filename='img/base/Arrow.png')}}"
+        style="padding: 2rem;" />
     </div>
-   
+    <div class="mw-50 m-1">
+      <img class="img-fluid rounded float-left" src="{{url_for('static',filename='img/compressed.jpg')}}"
+        id="gambar-display" />
+    </div>
+
     {% else %}
     <div class="w-50 m-1">
       <img class="img-fluid" src="{{url_for('static',filename='img/objects/Arrow.png')}}" style="margin-top: 70px;padding: 2rem;"/>
