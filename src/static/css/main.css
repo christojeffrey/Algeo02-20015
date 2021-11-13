@@ -20,6 +20,7 @@ img {
   padding: 10px;
   border-radius: 3px;
   background-color: white;
+  max-height: 50%;
 }
 
 #log-kompresi{
@@ -27,5 +28,4 @@ img {
   font-size:medium;
   border-style: dashed;
   border-color: black;
-  max-height: 50%;
 }

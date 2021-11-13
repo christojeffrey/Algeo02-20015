@@ -72,11 +72,11 @@
 
     {% if compress %}
     <div class="w-50 m-1">
-      <img class="img-fluid rounded mx-auto d-block" src="{{url_for('static',filename='img/objects/Arrow.png')}}"
+      <img class="img-fluid rounded mx-auto d-block" src="{{url_for('static',filename='img/base/Arrow.png')}}"
         style="padding: 2rem;" />
     </div>
     <div class="mw-50 m-1">
-      <img class="img-fluid rounded float-left" src="{{url_for('static',filename='img/' + filename[:-4] + '_compressed' + filename[-4:])}}"
+      <img class="img-fluid rounded float-left" src="{{url_for('static',filename='img/compressed.jpg')}}"
         id="gambar-display" />
     </div>
 
@@ -95,7 +95,7 @@
   <h4 id="log-kompresi">
     Compress Log
   </h4>
-  <div>
+  <div id="log-kompresi">
     {{compressLog | safe}}
   </div>
   {% endif %}
