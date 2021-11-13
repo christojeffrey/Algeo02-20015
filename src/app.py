@@ -34,7 +34,7 @@ def upload_image():
         print(filename)
         print(percentage)
 
-        compressAlgo.algo(filename, percentage)
+        compressAlgo.algoKompresi(filename,percentage)
         compressLog = """
         testing </br>
         mutli </br>

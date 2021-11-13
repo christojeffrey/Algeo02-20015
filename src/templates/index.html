@@ -13,31 +13,38 @@
   <!-- file, compress setting, and compress button -->
   {% if filename %}
   <form method="post" action="/" enctype="multipart/form-data">
-    <h5>Upload Image</h3>
-      <input type="file" name="image" class="form-control-lg" autocomplete="off" required />
+      <h5>Upload Image</h3>
+      <input type="file" name="image" class="form-control-lg" autocomplete="off"  />
       <p>
         <input type="submit" value="Submit" class="btn btn-info">
-      </p>
+    </p>
+  {% else %}
+    <form method="post" action="/" enctype="multipart/form-data">
+      <h5>Upload Image</h3>
+      <input type="file" name="image" class="form-control-lg" autocomplete="off" required />
+      <p>
+        <input type="submit" value="Submit" class="btn
+            btn-info">
+    </p>
+  {% endif %}
 
-  </form>
-
-  <form>
+  {% if filename %}
+  <form method="post" action="/" enctype="multipart/form-data">
     <h5>Compress Percentage</h3>
       <div class="slidecontainer">
-        <input type="range" class="form-range" name="compressPercentage" min="1" max="100" value="50" class="slider"
-          id="myRange" />
+        <input type="range" class="form-range" name="compressPercentage" min="1" max="100" value="50" class="slider" id="myRange" />
       </div>
       <div id="compressPercentage">50</div>
-      {% if filename %}
-      <div class="d-flex justify-content-center">
-        <input type="submit" value="Compress!" class="btn btn-info" />
-      </div>
-      {% else %}
-      <div class="d-flex justify-content-center">
-        <input type="submit" value="Compress!" class="btn btn-info disabled" />
-      </div>
-      {% endif %}
+    <div class="d-flex justify-content-center">
+      <input type="submit" value="Compress!" class="btn btn-info " name = "Compress"/>
+    </div>
   </form>
+  
+  {% else %}
+  <div class="d-flex justify-content-center">
+    <input type="submit" value="Compress!" class="btn btn-info disabled" />
+  </div>
+  {% endif %}
 
 
   <div class="d-flex justify-content-center">
