@@ -50,6 +50,15 @@ img {
   float: left;
 } */
 
-#luaran{
+#luaran {
   background: blueviolet;
+  margin: 0;
+}
+
+#gambar-display {
+  border-style: solid;
+  border-color: black;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: white;
 }
