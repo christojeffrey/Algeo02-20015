@@ -26,7 +26,7 @@ def ownSVD(img):
 
 
 
-def algo(filename, percentage):
+def algoKompresi(filename, percentage):
     startTime = time.time()
     img = cv.imread(filename)
     log = ""
