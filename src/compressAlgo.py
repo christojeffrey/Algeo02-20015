@@ -28,8 +28,7 @@ def ownSVD(img):
 
 def algoKompresi(filename, percentage):
     startTime = time.time()
-    print("//img//base//"+filename)
-    img = cv.imread("\\static\\img\\base\\"+filename)
+    img = cv.imread("static/img/base/" + filename)
     log = ""
     log += "image berhasil di read...<br>"
 
@@ -78,11 +77,10 @@ def algoKompresi(filename, percentage):
     r = output[2]
     imgOut = cv.merge((b,g,r))
     # PRINT KE FILE
-    outputFormat = filename[-4:]
-    outputFilename = filename[:-4] + "_compressed" + outputFormat
+    outputFilename = filename[:-4] + "_compressed" + filename[-4:]
     log += "hasil kompresi akan disimpan dengan nama " + (outputFilename) + "<br>"
 
-    status = cv.imwrite(outputFilename,imgOut)
+    status = cv.imwrite("static/img/"+outputFilename,imgOut)
     if (status):
         log += ("kompresi gambar berhasil<br>")
     else:
