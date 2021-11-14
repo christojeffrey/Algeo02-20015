@@ -16,9 +16,16 @@ Mengkompres gambar menggunakan algoritma SVD
 * **_src_**  berisi file "source file" 
 * **_test_** berisi gambar masukan
 
+## Pre-requisite
+* python
+* flask
+* flask-util
+* opencv
+* opencv-contrib
+
 ## Cara Run Program
-<br> 1. Masuk ke folder **_src_**
+1. Masuk ke folder **_src_**
 <br> 2. Buka CMD
 <br> 3. Ketik "python app.py"
 <br> 4. Ketikkan "localhost:5000" di browser 
-<br>    (jangan buka dari IP di terminal, terdapat kemungkinan bug cache)
+<br>    _(jangan buka dari IP di terminal, terdapat kemungkinan bug cache)_
