@@ -25,7 +25,7 @@ Mengkompres gambar menggunakan algoritma SVD
 
 ## Cara Run Program
 1. Masuk ke folder **_src_**
-<br>2. Buka CMD
-<br>3. Ketik "python app.py"
-<br>4. Ketikkan "localhost:5000" di browser 
-<br>_(jangan buka dari IP di terminal, terdapat kemungkinan bug cache)_
+2. Buka CMD
+3. Ketik "python app.py"
+4. Ketikkan "localhost:5000" di browser 
+_(jangan buka dari IP di terminal, terdapat kemungkinan bug cache)_
