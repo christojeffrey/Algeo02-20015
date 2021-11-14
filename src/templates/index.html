@@ -49,7 +49,7 @@
 
   <div class="d-flex justify-content-center">
     {% if compress %}
-    <a href="{{url_for('static',filename='img/compressed.jpg')}}" download>
+    <a href="{{url_for('static',filename='img/' + filename[:-4] + '_compressed' + filename[-4:])}}" download>
       <button class=" btn btn-danger">Download!</button>
     </a>
     {% else %}
@@ -60,24 +60,24 @@
   <!-- image preview -->
   <div class="d-flex">
     {% if filename %}
-    <div class="mww-50 m-1" >
+    <div class="mw-50 m-1" style="max-width: 50%;" >
       <img class="img-fluid rounded" src="{{url_for('static',filename='img/base/'+ filename)}}" id="gambar-display"/>
     </div>
     {% else %}
 
     <div class="w-50 m-1" style="height: 100%;">
-      <img class="img-fluid rounded" src="{{url_for('static',filename='img/objects/noimage.png')}}" id="gambar-display"/>
+      <img class="img-fluid rounded" src="{{url_for('static',filename='img/objects/noimage.png')}}"  id="gambar-noimg"/>
     </div>
     {% endif %}
 
     {% if compress %}
-    <div class="mww-50 m-1">
-      <img class="img-fluid rounded float-right" src="{{url_for('static',filename='img/compressed.jpg')}}" id="gambar-display" />
+    <div class="mw-50 m-1">
+      <img class="img-fluid rounded float-right" src="{{url_for('static',filename='img/' + filename[:-4] + '_compressed' + filename[-4:])}}" id="gambar-display" />
     </div>
 
     {% else %}
-    <div class="w-50 m-1">
-      <img class="img-fluid rounded" src="{{url_for('static',filename='img/objects/noimage.png')}}" id="gambar-display"/>
+    <div class="w-50 m-1" >
+      <img class="img-fluid rounded float-right" src="{{url_for('static',filename='img/objects/noimage.png')}}" id="gambar-noimg" />
     </div>
     {% endif %}
   </div>
