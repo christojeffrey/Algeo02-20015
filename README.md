@@ -22,6 +22,7 @@ Mengkompres gambar menggunakan algoritma SVD
 * flask-util
 * opencv
 * opencv-contrib
+(cek list_package.txt)
 
 ## Cara Run Program
 1. Masuk ke folder **_src_**
