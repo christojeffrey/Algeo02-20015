@@ -7,6 +7,7 @@
 img {
   float: left;
   padding: 30px;
+ 
 } 
 
 #luaran {
@@ -20,6 +21,16 @@ img {
   border-radius: 10px;
   background-color: white;
   height: 100%;
+  width: 100%;
+}
+#gambar-noimg {
+  border-style: solid;
+  border-color: black;
+  border-radius: 10px;
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  float: right;
 }
 
 #log-kompresi{
@@ -28,3 +39,5 @@ img {
   border-style: dashed;
   border-color: black;
 }
+
+
