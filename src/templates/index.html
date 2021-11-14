@@ -60,7 +60,7 @@
   <!-- image preview -->
   <div class="d-flex">
     {% if filename %}
-    <div class="w-50 m-1" >
+    <div class="mww-50 m-1" >
       <img class="img-fluid rounded" src="{{url_for('static',filename='img/base/'+ filename)}}" id="gambar-display"/>
     </div>
     {% else %}
@@ -71,7 +71,7 @@
     {% endif %}
 
     {% if compress %}
-    <div class="w-50 m-1">
+    <div class="mww-50 m-1">
       <img class="img-fluid rounded float-right" src="{{url_for('static',filename='img/compressed.jpg')}}" id="gambar-display" />
     </div>
 
