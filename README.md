@@ -1,6 +1,6 @@
 # Algeo02-20015 (ImageCompressorinator3000)
 
-Tugas Besar 2 Mata Kuliah Aljabar Linear dan Geometri
+Tugas Besar 2 Mata Kuliah Aljabar Linear dan Geometri\
 Mengkompres gambar menggunakan algoritma SVD
 
 # Member
@@ -13,5 +13,5 @@ Mengkompres gambar menggunakan algoritma SVD
 * **_src_**  berisi file "source file" 
 * **_test_** berisi gambar masukan
 
-## Tampilan Awal
+## Tampilan Web
 ![Gambar awal](./Tampilan_awal.png)
