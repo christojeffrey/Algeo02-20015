@@ -5,9 +5,9 @@
 }
 
 img {
-  width: 500px;
   float: left;
-} */
+  padding: 30px;
+} 
 
 #luaran {
   margin: 0;
@@ -17,8 +17,7 @@ img {
 #gambar-display {
   border-style: solid;
   border-color: black;
-  padding: 10px;
-  border-radius: 3px;
+  border-radius: 10px;
   background-color: white;
   max-height: 100%;
 }
