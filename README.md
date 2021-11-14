@@ -14,4 +14,4 @@ Mengkompres gambar menggunakan algoritma SVD
 * **_test_** berisi gambar masukan
 
 
-[Gambar awal](./Tampilan_awal.png)
+![Gambar awal](./Tampilan_awal.png)
