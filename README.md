@@ -13,5 +13,5 @@ Mengkompres gambar menggunakan algoritma SVD
 * **_src_**  berisi file "source file" 
 * **_test_** berisi gambar masukan
 
-
+## Tampilan Awal
 ![Gambar awal](./Tampilan_awal.png)
